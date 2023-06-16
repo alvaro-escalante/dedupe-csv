@@ -60,7 +60,7 @@ export const Deduper = () => {
         json = [...unique.values()]
         const plural = counter.size > 1 ? 's' : ''
         console.log(yellow.bold(`${counter.size} duplicate${plural} found`))
-        await writeCSV(`${file.split('.csv')[0]}_dedupped.csv`, json)
+        await writeCSV(`${file.split('.csv')[0]}_deduped.csv`, json)
       } else {
         console.log(green.bold('No duplicates found'))
       }
