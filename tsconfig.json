@@ -1,0 +1,21 @@
+{
+  "ts-node": { "files": true },
+  "compilerOptions": {
+    "outDir": "./lib",
+    "module": "commonjs",
+    "target": "es6",
+    "lib": ["es2017", "dom"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "typeRoots": ["./node_modules/@types", ".src/@types"]
+  },
+  "include": ["src", "__tests__/data.ts"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
