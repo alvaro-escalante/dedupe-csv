@@ -29,7 +29,7 @@ const writeCSV = async (dest: string, data: any[]) => {
 export const Deduper = () => {
   const column = process.argv[2] // Get the column from the command line argument
   const file = process.argv[3] // Get the file from the command line argument
-  const opt = process.argv[4] // Option first
+  const opt = process.argv[4] // Options first
   let counter = new Map()
   let json = []
   const unique = new Map()
