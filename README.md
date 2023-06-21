@@ -7,7 +7,9 @@ A lightweight module designed to be run from the command line, it takes a csv fi
 ## Quick start
 <br />
 
-Use node argv to first indicate the column to target for duplication and then the file to read
+To use `dedupe-csv` the terminal needs point to the folder where the `csv` is.
+
+Use node argv to first indicate file to read and then the header to target for duplication, optionally you can specify whether the first duplicates of the last one are to be kept.
 
 `dedupe-csv ['file.csv'] ['header'] ['first' | 'last']`
 
