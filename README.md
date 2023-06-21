@@ -1,8 +1,8 @@
 # Dedupe-csv
 
-A lightweight module designed to be run from the command line, it takes a csv file and removes duplicate entries by default when detecting identicle lines and with optional parameters to select a particular header, it also has the option to select the first and last duplicates detected.
+A lightweight module designed to be run from the command line, it takes a csv file and removes duplicate entries by default when detecting identical lines and with optional parameters to select a particular header, it also has the option to select the first and last duplicates detected to be kept.
 
-`dedupe-csv` it's based on pandas' `drop_duplicates` function and follow the same functionality.
+`dedupe-csv` it's based on pandas' `drop_duplicates` function and follows the same functionality.
 
 ## Quick start
 <br />
