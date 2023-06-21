@@ -56,7 +56,7 @@ const readFile = async (filePath: string, file: string, header: string, keep: st
       }
     })
     .on('end', async () => {
-      if (!Object.keys(json[0]).includes(header)) {
+      if (!Object.keys(json[0]).includes(header) && typeof header !== 'undefined') {
         console.log(
           red.bold(`${header}`),
           'header does not exists on',
