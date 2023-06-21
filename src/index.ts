@@ -31,6 +31,16 @@ const readFile = async (filePath: string, file: string, header: string, keep: st
   const unique = new Map()
   const first = keep === 'first'
 
+  if (!['first', 'last'].includes(keep)) {
+    console.log(
+      red.bold(`${keep}`),
+      'Is not a valid option, please use only',
+      green(`'first' 'last'`),
+      'as options'
+    )
+    process.exit()
+  }
+
   createReadStream(filePath)
     .pipe(csv())
     .on('error', (error) => console.log(error))
