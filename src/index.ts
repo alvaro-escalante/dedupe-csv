@@ -31,7 +31,7 @@ const readFile = async (filePath: string, file: string, header: string, keep: st
   const unique = new Map()
   const first = keep === 'first'
 
-  if (!['first', 'last'].includes(keep)) {
+  if (!['first', 'last'].includes(keep) && typeof keep !== 'undefined') {
     console.log(
       red.bold(`${keep}`),
       'Is not a valid option, please use only',
