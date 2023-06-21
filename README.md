@@ -27,7 +27,7 @@ $ yarn global add dedupe-csv
 
 ## Examples
 
-To use given the default settings to test complete line duplicates
+Default settings will remove duplicated lines, needs only file name
 
 ##### data.csv
 
@@ -39,7 +39,7 @@ Yum,cup,1
 
 `$ dedupe-csv 'data.csv'`
 
-Will result in the following file being outputed
+Will output the following file
 
 ##### data_deduped.csv
 ```
@@ -47,7 +47,7 @@ brand,style,rating
 Yum,cup,1
 ```
 
-To remove duplicated by header
+To remove duplicates by header use the name of the header after the file name
 
 ##### data.csv
 
@@ -68,7 +68,7 @@ Yum,cup,1
 Foo,cup,1
 ```
 
-To remove duplicated by header but keep last 
+To remove duplicates by header and keep last duplicate found, use the 'last' after the header
 
 ##### data.csv
 
