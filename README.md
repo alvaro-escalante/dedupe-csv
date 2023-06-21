@@ -9,7 +9,7 @@ A lightweight module designed to be run from the command line, it takes a csv fi
 
 Use node argv to first indicate the column to target for duplication and then the file to read
 
-`dedupe-csv ['column'] ['file.csv'] ['first']`
+`dedupe-csv ['file.csv'] ['header']  ['first']`
 
 ## Install
 
