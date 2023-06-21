@@ -16,13 +16,13 @@ Use node argv to first indicate the column to target for duplication and then th
 Using npm:
 
 ```console
-$ npm install dedupe-csv
+$ npm install -g dedupe-csv
 ```
 
 Using yarn:
 
 ```console
-$ yarn add dedupe-csv
+$ yarn global add dedupe-csv
 ```
 
 ## Examples
