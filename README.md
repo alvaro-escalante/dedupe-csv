@@ -5,13 +5,22 @@ A lightweight module designed to be run from the command line, it takes a csv fi
 `dedupe-csv` it's based on pandas' `drop_duplicates` function and follows the same functionality.
 
 ## Quick start
-<br />
 
-To use `dedupe-csv` the terminal needs to point to the folder where the `csv` is.
 
-Use node argv to first indicate file to read and then the header to target for duplication, optionally you can specify whether the first duplicates of the last one are to be kept.
+To use `dedupe-csv` open the terminal on the folder where the file is at
 
-`dedupe-csv ['file.csv'] ['header'] ['first' | 'last']`
+## Options
+
+The `dedupe-csv` command accepts the following options:
+
+- `file`: Specifies the input CSV file. Replace `"data.csv"` with the path to your CSV file.
+- `column`: (Optional) if ommited it will look for identical rows. If specified the header name in the CSV file wil be used to identify duplicates. Replace `"header name"` with the actual header name you want to use.
+- `keep`: (Optional) Specifies the strategy for keeping duplicates. Default value is `"first"`. Available options are:
+  - `"first"`: Keep the first occurrence of each duplicate.
+  - `"last"`: Keep the last occurrence of each duplicate.
+
+
+`dedupe-csv file="data.csv" column="header name" keep="first"`
 
 ## Install
 
@@ -39,7 +48,7 @@ Yum,cup,1
 Yum,cup,1
 ```
 
-`$ dedupe-csv 'data.csv'`
+`$ dedupe-csv file="data.csv"`
 
 Will output the following file
 
@@ -61,7 +70,7 @@ Foo,cup,1
 Foo,pack,2
 ```
 
-`$ dedupe-csv 'data.csv' 'brand'`
+`$ dedupe-csv file="data.csv" column="brand"`
 
 ##### data_deduped.csv
 ```
@@ -82,7 +91,7 @@ Foo,cup,1
 Foo,pack,2
 ```
 
-`$ dedupe-csv 'data.csv' 'brand' 'last'`
+`$ dedupe-csv file="data.csv" column="brand" keep="last"`
 
 ##### data_deduped.csv
 ```

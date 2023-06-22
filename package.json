@@ -1,8 +1,8 @@
 {
   "name": "dedupe-csv",
-  "version": "1.0.2",
-  "description": "A dedupper for duplicate entries on a CSV files",
-  "author": "Alvaro Fernandez",
+  "version": "1.0.3",
+  "description": "A deduper for duplicate entries on a CSV files",
+  "author": "Alvaro Fernandez - Builtvisible",
   "license": "ISC",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
