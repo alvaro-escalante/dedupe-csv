@@ -8,10 +8,11 @@ import Options from './options'
 import Writer from './writer'
 
 const readFile = async (filePath: string, file: string, column: string, keep: string) => {
-  let json = []
-  let counter = 0
+  let json: string[] = []
+  let counter: number = 0
   const unique = new Map()
   const first = keep === 'first'
+  let isHeader: boolean = true
 
   const headers = column ? column.split(',') : null
 
@@ -29,20 +30,24 @@ const readFile = async (filePath: string, file: string, column: string, keep: st
     .pipe(csv())
     .on('error', (error) => console.log(error))
     .on('data', (entry) => {
-      let key: string | string
-      if (headers.length > 1) {
-        key = headers ? headers.map((col) => entry[col]).join(',') : JSON.stringify(entry)
+      if (Object.keys(entry).length === 0) return
+
+      let key: string
+
+      if (headers === null) {
+        isHeader = false
+        key = JSON.stringify(entry)
+      } else if (headers.length > 1) {
+        key = headers.map((col) => entry[col]).join(',')
       } else {
-        key = headers[0] ? entry[headers[0]] : JSON.stringify(entry)
+        key = entry[headers[0]]
       }
 
       if (unique.has(key)) {
         counter++
         if (!first) {
           const existingEntry = unique.get(key)
-          if (existingEntry.rating < entry.rating) {
-            unique.set(key, entry)
-          }
+          if (existingEntry.rating < entry.rating) unique.set(key, entry)
         }
       } else {
         unique.set(key, entry)
@@ -50,17 +55,17 @@ const readFile = async (filePath: string, file: string, column: string, keep: st
       }
     })
     .on('end', async () => {
-      // if (json.length) {
-      //   if (column !== '' && !Object.keys(json[0]).includes(column)) {
-      //     console.log(
-      //       red.bold(`${column}`),
-      //       'column does not exists on',
-      //       green(`${file}`),
-      //       'file'
-      //     )
-      //     process.exit()
-      //   }
-      // }
+      if (json.length && isHeader) {
+        if (column !== '' && !Object.keys(json[0]).includes(column)) {
+          console.log(
+            red.bold(`${column}`),
+            'column does not exists on the',
+            green(`${file}`),
+            'file'
+          )
+          process.exit()
+        }
+      }
 
       if (!first) json = [...unique.values()]
       if (counter > 0) {
