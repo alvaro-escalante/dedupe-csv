@@ -5,7 +5,27 @@ import { resolve } from 'path'
 import chalk from 'chalk'
 const { cyan, yellow, green, red } = chalk
 import Options from './options'
-import Writer from './writer'
+
+import { createObjectCsvWriter } from 'csv-writer'
+
+const Writer = async (dest: string, data: any[]) => {
+  // Create CSV writer and take the headers from the first row
+  const csvWriter = createObjectCsvWriter({
+    path: dest,
+    header: Object.keys(data[0]).map((fieldName) => ({
+      id: fieldName,
+      title: fieldName
+    }))
+  })
+
+  // Write to file
+  try {
+    await csvWriter.writeRecords(data)
+    console.log(green(`${dest} created successfully`))
+  } catch (error) {
+    throw new Error(error)
+  }
+}
 
 const readFile = async (filePath: string, file: string, column: string, keep: string) => {
   let json: string[] = []
@@ -47,23 +67,28 @@ const readFile = async (filePath: string, file: string, column: string, keep: st
         counter++
         if (!first) {
           const existingEntry = unique.get(key)
-          if (existingEntry.rating < entry.rating) unique.set(key, entry)
+          const existingValue = existingEntry[column]
+          const newValue = entry[column]
+          if (existingValue <= newValue) unique.set(key, entry)
         }
       } else {
         unique.set(key, entry)
         if (first) json.push(entry)
       }
     })
+    // Test the
     .on('end', async () => {
       if (json.length && isHeader) {
-        if (column !== '' && !Object.keys(json[0]).includes(column)) {
-          console.log(
-            red.bold(`${column}`),
-            'column does not exists on the',
-            green(`${file}`),
-            'file'
-          )
-          process.exit()
+        for (const header of headers) {
+          if (!Object.keys(json[0]).includes(header)) {
+            console.log(
+              red.bold(`${column}`),
+              'column does not exists on the',
+              green(`${file}`),
+              'file'
+            )
+            process.exit()
+          }
         }
       }
 
