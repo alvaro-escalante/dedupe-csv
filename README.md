@@ -38,19 +38,21 @@ $ yarn global add dedupe-csv
 
 ## Examples
 
-Default settings will remove duplicated lines, needs only file name
+#### Remove duplicated no options
 
-##### data.csv
-
-```
-brand,style,rating
-Yum,cup,1
-Yum,cup,1
-```
+This will remove any entries that are identical in all their headers and keep the first found
 
 `$ dedupe-csv file="data.csv"`
 
-Will output the following file
+##### data.csv
+
+```
+brand,style,rating
+Yum,cup,1
+Yum,cup,1
+```
+
+Will output the following file:
 
 ##### data_deduped.csv
 ```
@@ -58,30 +60,13 @@ brand,style,rating
 Yum,cup,1
 ```
 
-To remove duplicates by header use the name of the header after the file name
+#### Remove duplicates by column name
 
-##### data.csv
-
-```
-brand,style,rating
-Yum,cup,1
-Yum,pack,2
-Foo,cup,1
-Foo,pack,2
-```
+This will remove any entries that have the same duplicated column
 
 `$ dedupe-csv file="data.csv" column="brand"`
 
-##### data_deduped.csv
-```
-brand,style,rating
-Yum,cup,1
-Foo,cup,1
-```
-
-To remove duplicates by header and keep last duplicate found, use the 'last' after the header
-
-##### data.csv
+##### data-column.csv
 
 ```
 brand,style,rating
@@ -91,9 +76,61 @@ Foo,cup,1
 Foo,pack,2
 ```
 
+Will output the following file:
+
+##### data-column_deduped.csv
+```
+brand,style,rating
+Yum,cup,1
+Foo,cup,1
+```
+
+#### Remove duplicates by using multiple headers
+
+This will remove any entries that match the same duplicated columns. To use it, add columns between quotes and separated by commas.
+
+`$ dedupe-csv file="data-multiple.csv" column="brand,style"`
+
+##### data-multiple.csv
+```
+brand,style,rating
+Yum,cup,1
+Yum,cup,2
+Foo,cup,1
+Foo,pack,3
+Foo,pack,1
+```
+
+Will output the following file:
+
+##### data-multiple_dedupe.csv
+
+```
+brand,style,rating
+Yum,cup,1
+Foo,cup,1
+Foo,pack,3
+```
+
+#### Remove duplicates by header and keep last
+This will remove any duplicated entries match by column name and keep the last found
+
+To use add the options `keep="last"` 
+
 `$ dedupe-csv file="data.csv" column="brand" keep="last"`
 
-##### data_deduped.csv
+##### data-last.csv
+
+```
+brand,style,rating
+Yum,cup,1
+Yum,pack,2
+Foo,cup,1
+Foo,pack,2
+```
+
+
+##### data-last_deduped.csv
 ```
 brand,style,rating
 Yum,pack,2
