@@ -23,6 +23,7 @@ const Writer = async (dest: string, data: any[]) => {
     await csvWriter.writeRecords(data)
     console.log(green(`${dest} created successfully`))
   } catch (error) {
+    console.log('Hey')
     throw new Error(error)
   }
 }
@@ -46,9 +47,12 @@ const readFile = async (filePath: string, file: string, column: string, keep: st
     process.exit()
   }
 
+  try {
+  } catch (error) {}
+
   createReadStream(filePath)
+    .on('error', (error) => console.log(error.message))
     .pipe(csv())
-    .on('error', (error) => console.log(error))
     .on('data', (entry) => {
       if (Object.keys(entry).length === 0) return
 
@@ -107,6 +111,11 @@ export const Deduper = async () => {
   console.log(cyan('Working...'))
 
   const { file, column, keep } = Options()
+  if (file === '') {
+    const filename = green(`file='name_of_file.csv'`)
+    console.log(`No CSV included, please specify a csv file by using ${filename}`)
+    process.exit()
+  }
 
   const filePath = resolve(process.cwd(), file) // Resolve the absolute file path
 
