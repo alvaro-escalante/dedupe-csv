@@ -47,11 +47,12 @@ const readFile = async (filePath: string, file: string, column: string, keep: st
     process.exit()
   }
 
-  try {
-  } catch (error) {}
-
   createReadStream(filePath)
-    .on('error', (error) => console.log(error.message))
+    .on('error', () =>
+      console.log(
+        'File not found please make sure the file is on the same path you are running the command'
+      )
+    )
     .pipe(csv())
     .on('data', (entry) => {
       if (Object.keys(entry).length === 0) return

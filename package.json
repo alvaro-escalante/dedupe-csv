@@ -1,6 +1,6 @@
 {
   "name": "dedupe-csv",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A deduper for duplicated entries on a CSV files",
   "author": "Alvaro Fernandez - Builtvisible",
   "license": "ISC",
