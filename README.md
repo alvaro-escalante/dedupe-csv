@@ -129,6 +129,7 @@ Foo,cup,1
 Foo,pack,2
 ```
 
+Will output the following file:
 
 ##### data-last_deduped.csv
 ```

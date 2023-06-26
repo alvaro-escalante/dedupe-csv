@@ -23,7 +23,6 @@ const Writer = async (dest: string, data: any[]) => {
     await csvWriter.writeRecords(data)
     console.log(green(`${dest} created successfully`))
   } catch (error) {
-    console.log('Hey')
     throw new Error(error)
   }
 }
