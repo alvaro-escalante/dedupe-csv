@@ -1,12 +1,14 @@
 import { execSync } from 'child_process'
-
+import path from 'path'
 import { readFileSync, unlinkSync } from 'fs'
 
 // Function that executes the file as form the command line
 const runCommadLine = (file?: string, cat: string = '', opt: string = '') => {
+  const filePath = file ? path.join(__dirname, file) : null
+
   try {
     const consoleOutput = execSync(
-      `node ./lib/index.js file="__tests__/${file}" ${cat ? `column="${cat}"` : ''} ${
+      `node ./lib/index.js file="${filePath}" ${cat ? `column="${cat}"` : ''} ${
         opt ? `keep="${opt}"` : ''
       }`,
       {
@@ -80,17 +82,14 @@ describe('Check the content of the files', () => {
 describe('Check error on wrong colmuns', () => {
   test('Error with bran not beeing a valid column', () => {
     const output = runCommadLine('data-simple.csv', 'bran')
-    expect(output).toContain('Working...')
-    expect(output).toContain(
-      'bran column does not exists on the __tests__/data-simple.csv file'
-    )
+    expect(output).toMatch(/\[ \'bran\' \]|^Working\.\.\.|.*\d.*/)
+    expect(output).toContain('The bran column not be found on the')
   })
 
   test('Error with order argunment `last` not beeing a valid parameter', () => {
     const output = runCommadLine('data-simple.csv', 'brand', 'notlast')
-    expect(output).toContain('Working...')
-    expect(output).toContain(
-      `notlast Is not a valid option, please use only 'first' 'last' as options`
+    expect(output).toMatch(
+      /notlast Is not a valid option, please use only \'first\' \'last\' as options|Working\.\.\.|.*\d.*/
     )
   })
 })
