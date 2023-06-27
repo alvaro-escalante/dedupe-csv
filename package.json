@@ -13,6 +13,12 @@
     "node": ">14.0.0",
     "npm": ">6.14.0"
   },
+  "keywords": [
+    "drop duplicates",
+    "remove duplicates",
+    "dedupe",
+    "csv"
+  ],
   "repository": {
     "type": "git",
     "issues": "https://github.com/alvaro-escalante/dedupe-csv/issues",
