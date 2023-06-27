@@ -19,7 +19,7 @@ export default async (
   const first = keep === 'first'
   const headers = column ? column.split(',').map((item) => item.trim()) : null
   let isHeader: boolean = headers !== null
-  let isDataHeader: boolean = true
+  let firstRound: boolean = true
 
   const bar = Progress(total)
 
@@ -42,21 +42,24 @@ export default async (
     .pipe(csv())
     .on('data', (obj) => {
       // Check the columns do exists
-      if (isDataHeader && isHeader) {
-        const dataHeaders = Object.keys(obj).map((item) => item.trim())
-        console.log(headers)
-        for (const header of headers) {
-          if (!dataHeaders.includes(header)) {
-            console.log(
-              'The ' + red.bold(`${header}`),
-              'column not be found on the',
-              green(`${file}`),
-              'file'
-            )
-            process.exit()
+      if (firstRound) {
+        if (isHeader) {
+          const dataHeaders = Object.keys(obj).map((item) => item.trim())
+
+          for (const header of headers) {
+            if (!dataHeaders.includes(header)) {
+              console.log(
+                'The ' + red.bold(`${header}`),
+                'column not be found on the',
+                green(`${file}`),
+                'file'
+              )
+              process.exit()
+            }
           }
         }
-        isDataHeader = false
+        firstRound = false
+        bar.start(total, 0)
       }
 
       bar.update(progressCount++)

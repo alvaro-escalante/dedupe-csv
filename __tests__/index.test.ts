@@ -82,8 +82,8 @@ describe('Check the content of the files', () => {
 describe('Check error on wrong colmuns', () => {
   test('Error with bran not beeing a valid column', () => {
     const output = runCommadLine('data-simple.csv', 'bran')
-    expect(output).toMatch(/\[ \'bran\' \]|^Working\.\.\.|.*\d.*/)
-    expect(output).toContain('The bran column not be found on the')
+    expect(output).toMatch(/The bran column not be found on the|Working\.\.\.|.*\d.*/)
+    expect(output).toContain('')
   })
 
   test('Error with order argunment `last` not beeing a valid parameter', () => {

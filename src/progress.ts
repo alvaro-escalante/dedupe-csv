@@ -15,7 +15,6 @@ export default (total: number) => {
     },
     Presets.shades_classic
   )
-  bar.start(total, 0)
 
   return bar
 }
