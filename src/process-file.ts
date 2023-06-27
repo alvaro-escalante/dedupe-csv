@@ -18,7 +18,7 @@ export default async (
   const unique = new Map()
   const first = keep === 'first'
   const headers = column ? column.split(',').map((item) => item.trim()) : null
-  let isHeader: boolean = headers !== null
+  const isHeader: boolean = headers !== null
   let firstRound: boolean = true
 
   const bar = Progress(total)
