@@ -6,7 +6,7 @@ export default async (file: string) => {
     const content = data.toString()
 
     // Remove empty lines from the content
-    const nonEmptyContent = content.replace(/^\s*[\r\n]/gm, '')
+    const nonEmptyContent = content.replace(/^\s*[\r\n]|[\r\n]\s*$/g, '')
 
     // Split the non-empty content into lines
     const lines = nonEmptyContent.split('\n')
