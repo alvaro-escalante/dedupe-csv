@@ -91,9 +91,9 @@ export default async (
     })
     // Test the
     .on('end', async () => {
+      bar.stop()
       if (!first) json = [...unique.values()]
       if (counter > 0) {
-        bar.stop()
         const plural = counter > 1 ? 's' : ''
         console.log(yellow.bold(`${counter} duplicate${plural} found`))
         await Writer(`${file.split('.csv')[0]}_deduped.csv`, json)

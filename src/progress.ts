@@ -7,8 +7,8 @@ export default (total: number) => {
     {
       format: `Progress |${cyan(
         '{bar}'
-      )}| {percentage}% | Time: {duration}s | {value}/{total}`,
-
+      )}| {percentage}% | Time: {duration}s | {value}/${total}`,
+      clearOnComplete: true,
       barCompleteChar: '\u2588',
       barIncompleteChar: '.',
       hideCursor: false
