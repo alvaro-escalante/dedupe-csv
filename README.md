@@ -14,11 +14,12 @@ The `dedupe-csv` command accepts the following options:
 ​
 - `file`: Specifies the input CSV file. Replace `"data.csv"` with the path to your CSV file.
 - `column`: (Optional) if ommitted it will look for identical rows. If specified, the header name in the CSV file will be used to identify duplicates. Replace `"header name/s"` with the header/s name you want to use. You can use multiple headers.
-- `keep`: (Optional) Specifies the strategy for keeping duplicates. Default value is `"first"`. Available options are:
+- `keep`: (Optional) Specifies the strategy for keeping duplicates. Default value is `"first"`. 
+- Available options are:
   - `"first"`: Keep the first occurrence of each duplicate.
-  - `"last"`: Keep the last occurrence of each duplicate.
-​
-​
+  - `"last"`:  Keep the last occurrence of each duplicate.​
+  
+
 `dedupe-csv file="data.csv" column="header name" keep="first"`
 ​
 ## Install
@@ -44,7 +45,6 @@ This will remove any entries that are identical across all headers and keep the 
 `$ dedupe-csv file="data.csv"`
 ​
 ##### data.csv
-​
 ```
 brand,style,rating
 Yum,cup,1
@@ -66,7 +66,6 @@ This will remove any entries that have the same duplicated column
 `$ dedupe-csv file="data.csv" column="brand"`
 ​
 ##### data-column.csv
-​
 ```
 brand,style,rating
 Yum,cup,1
@@ -103,7 +102,6 @@ Foo,pack,1
 Will output the following file:
 ​
 ##### data-multiple_dedupe.csv
-​
 ```
 brand,style,rating
 Yum,cup,1
@@ -119,7 +117,6 @@ To use add the option `keep="last"`
 `$ dedupe-csv file="data.csv" column="brand" keep="last"`
 ​
 ##### data-last.csv
-​
 ```
 brand,style,rating
 Yum,cup,1
