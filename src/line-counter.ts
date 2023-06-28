@@ -1,21 +1,15 @@
-import { readFile } from 'fs/promises'
+import { createReadStream } from 'fs'
+import readline from 'readline'
 
 export default async (file: string) => {
-  try {
-    const data = await readFile(file)
-    const content = data.toString()
+  let lineCount: number = 0
 
-    // Remove empty lines from the content
-    const nonEmptyContent = content.replace(/^\s*[\r\n]|[\r\n]\s*$/g, '')
+  const readStream = createReadStream(file)
+  const lines = readline.createInterface({
+    input: readStream,
+    crlfDelay: Infinity
+  })
 
-    // Split the non-empty content into lines
-    const lines = nonEmptyContent.split('\n')
-
-    // Exclude the header line from the line count
-    const lineCount = lines.length > 0 ? lines.length - 2 : 0
-
-    return lineCount
-  } catch (err) {
-    console.error(err)
-  }
+  for await (const _ of lines) lineCount++
+  return lineCount
 }

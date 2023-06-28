@@ -1,21 +1,24 @@
-import { createObjectCsvWriter } from 'csv-writer'
+import { createWriteStream } from 'fs'
 import chalk from 'chalk'
 const { green } = chalk
 
 export default async (dest: string, data: any[]) => {
-  // Create CSV writer and take the headers from the first row
-  const csvWriter = createObjectCsvWriter({
-    path: dest,
-    header: Object.keys(data[0]).map((fieldName) => ({
-      id: fieldName,
-      title: fieldName
-    }))
-  })
+  // Create the header line from the keys of the first row
+  const headers = Object.keys(data[0]).join(',')
 
   // Write to file
   try {
-    await csvWriter.writeRecords(data)
-    console.log(green(`${dest} created successfully`))
+    const writeStream = createWriteStream(dest)
+    writeStream.write(`${headers}\n`) // Write the header line
+
+    for (const row of data) {
+      const line = Object.values(row).join(',')
+      writeStream.write(`${line}\n`) // Write each data row
+    }
+
+    writeStream.end() // Close the write stream
+
+    console.log(green(`${dest}`), 'created successfully')
   } catch (error) {
     throw new Error(error)
   }

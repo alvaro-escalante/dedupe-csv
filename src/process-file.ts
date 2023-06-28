@@ -3,7 +3,7 @@ import { createReadStream } from 'fs'
 import Writer from './writer'
 import Progress from './progress'
 import chalk from 'chalk'
-const { yellow, green, red } = chalk
+const { cyan, yellow, green, red } = chalk
 let progressCount: number = 0
 
 export default async (
@@ -95,7 +95,11 @@ export default async (
       if (!first) json = [...unique.values()]
       if (counter > 0) {
         const plural = counter > 1 ? 's' : ''
-        console.log(yellow.bold(`${counter} duplicate${plural} found`))
+        console.log(
+          yellow.bold(`${counter} duplicate${plural}`),
+          `found out of ${total} rows`
+        )
+        console.log(cyan('Writing...'))
         await Writer(`${file.split('.csv')[0]}_deduped.csv`, json)
       } else {
         console.log(green.bold('No duplicates found'))

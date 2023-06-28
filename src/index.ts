@@ -7,6 +7,7 @@ import Options from './options'
 const { green } = chalk
 
 export const Deduper = async () => {
+  console.log('Working...')
   const { file, column, keep } = Options()
 
   const total = await LineCounter(file)
