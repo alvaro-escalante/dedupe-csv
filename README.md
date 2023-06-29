@@ -1,3 +1,9 @@
+[![npm version](https://img.shields.io/npm/v/dedupe-csv?label=dedupe-csv&style=for-the-badge)](https://www.npmjs.com/package/dedupe-csv)
+[![package size](https://img.shields.io/bundlephobia/min/dedupe-csv?style=for-the-badge&label=package-size)](https://bundlephobia.com/result?p=dedupe-csv)
+[![minified size (gzip)](https://img.shields.io/bundlephobia/minzip/dedupe-csv?style=for-the-badge)](https://bundlephobia.com/result?p=dedupe-csv)
+![types](https://img.shields.io/npm/types/dedupe-csv?style=for-the-badge)
+![node](https://img.shields.io/node/v/dedupe-csv?style=for-the-badge)
+
 # Dedupe-csv
 ​
 A lightweight module designed to be run from the command line. By default, it takes a csv file, removes duplicate lines, and exports the unique lines to a new CSV. Also included, are optional parameters to check for duplicates across a subset of columns and to switch between keeping the first and last duplicates.
