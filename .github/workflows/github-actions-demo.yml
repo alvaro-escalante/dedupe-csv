@@ -1,5 +1,8 @@
 name: dedupe-csv
 on:
+  push:
+    branches:
+     - master
   release:
     types: [published]
 jobs:
