@@ -1,4 +1,4 @@
-[![dedupe-csv](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/github-actions-demo.yml)
+[![dedupe-csv](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/build.yml/badge.svg)](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/build.yml)
 [![npm version](https://img.shields.io/npm/v/dedupe-csv?label=version)](https://www.npmjs.com/package/dedupe-csv)
 [![package size](https://img.shields.io/bundlephobia/min/dedupe-csv)](https://bundlephobia.com/result?p=dedupe-csv)
 [![minified size (gzip)](https://img.shields.io/bundlephobia/minzip/dedupe-csv)](https://bundlephobia.com/result?p=dedupe-csv)
