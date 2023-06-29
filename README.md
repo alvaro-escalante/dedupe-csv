@@ -1,8 +1,9 @@
-[![npm version](https://img.shields.io/npm/v/dedupe-csv?label=dedupe-csv&style=for-the-badge)](https://www.npmjs.com/package/dedupe-csv)
-[![package size](https://img.shields.io/bundlephobia/min/dedupe-csv?style=for-the-badge&label=package-size)](https://bundlephobia.com/result?p=dedupe-csv)
-[![minified size (gzip)](https://img.shields.io/bundlephobia/minzip/dedupe-csv?style=for-the-badge)](https://bundlephobia.com/result?p=dedupe-csv)
-![types](https://img.shields.io/npm/types/dedupe-csv?style=for-the-badge)
-![node](https://img.shields.io/node/v/dedupe-csv?style=for-the-badge)
+[![build](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/github-actions-demo.yml/badge.svg?style=for-the-badge&label=build)](https://github.com/alvaro-escalante/dedupe-csv/actions/workflows/github-actions-demo.yml)
+[![npm version](https://img.shields.io/npm/v/dedupe-csv?label=version)](https://www.npmjs.com/package/dedupe-csv)
+[![package size](https://img.shields.io/bundlephobia/min/dedupe-csv)](https://bundlephobia.com/result?p=dedupe-csv)
+[![minified size (gzip)](https://img.shields.io/bundlephobia/minzip/dedupe-csv)](https://bundlephobia.com/result?p=dedupe-csv)
+![types](https://img.shields.io/npm/types/dedupe-csv)
+![node](https://img.shields.io/node/v/dedupe-csv)
 
 # Dedupe-csv
 ​
@@ -19,8 +20,8 @@ To use `dedupe-csv` open the terminal on the folder where the file is located.
 The `dedupe-csv` command accepts the following options:
 ​
 - `file`: Specifies the input CSV file. Replace `"data.csv"` with the path to your CSV file.
-- `column`: (Optional) if ommitted it will look for identical rows. If specified, the header name in the CSV file will be used to identify duplicates. Replace `"header name/s"` with the header/s name you want to use. You can use multiple headers.
-- `keep`: (Optional) Specifies the strategy for keeping duplicates. Default value is `"first"`. 
+- `column`: (Optional) if omitted it will look for identical rows. If specified, the header name in the CSV file will be used to identify duplicates. Replace `"header name/s"` with the header/s name you want to use. You can use multiple headers.
+- `keep`: (Optional) Specifies the strategy for keeping duplicates. The default value is `"first"`. 
 - Available options are:
   - `"first"`: Keep the first occurrence of each duplicate.
   - `"last"`:  Keep the last occurrence of each duplicate.​
