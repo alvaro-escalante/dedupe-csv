@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+      - run: tsc -p tsconfig.json
       - run: npm run build
       - run: npm run test
       - run: npm run lint
