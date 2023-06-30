@@ -43,7 +43,6 @@ export default async (
           }
         }
         firstRound = false
-        console.clear()
         bar.start(total, 0)
       }
 
