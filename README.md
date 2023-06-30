@@ -43,35 +43,32 @@ Using yarn:
 $ yarn global add dedupe-csv
 ```
 ​
-## Examples
-​
+## Usage
+
 #### Remove duplicate lines
-​
-This will remove any entries that are identical across all headers and keep the first entry found
-​
-`$ dedupe-csv file="data.csv"`
-​
+This will remove any entries that are identical across all headers and keep the first entry found<br />
+```console
+$ dedupe-csv file="data.csv"
+```
 ##### data.csv
 ```
 brand,style,rating
 Yum,cup,1
 Yum,cup,1
 ```
-​
 Will output the following file:
-​
 ##### data_deduped.csv
 ```
 brand,style,rating
 Yum,cup,1
 ```
-​
+<br />
+
 #### Remove duplicates by column name
-​
-This will remove any entries that have the same duplicated column
-​
-`$ dedupe-csv file="data.csv" column="brand"`
-​
+This will remove any entries that have the same duplicated column<br />
+```console
+$ dedupe-csv file="data.csv" column="brand"
+```
 ##### data-column.csv
 ```
 brand,style,rating
@@ -80,22 +77,20 @@ Yum,pack,2
 Foo,cup,1
 Foo,pack,2
 ```
-​
 Will output the following file:
-​
 ##### data-column_deduped.csv
 ```
 brand,style,rating
 Yum,cup,1
 Foo,cup,1
 ```
-​
+<br />
+
 #### Remove duplicates using multiple headers
-​
-This will remove any entries that match the same duplicated columns. To use it, add columns between quotes and separated by commas.
-​
-`$ dedupe-csv file="data-multiple.csv" column="brand,style"`
-​
+This will remove any entries that match the same duplicated columns. To use it, add columns between quotes and separated by commas.<br />
+```console
+$ dedupe-csv file="data-multiple.csv" column="brand,style"
+```
 ##### data-multiple.csv
 ```
 brand,style,rating
@@ -105,9 +100,7 @@ Foo,cup,1
 Foo,pack,3
 Foo,pack,1
 ```
-​
 Will output the following file:
-​
 ##### data-multiple_dedupe.csv
 ```
 brand,style,rating
@@ -115,14 +108,15 @@ Yum,cup,1
 Foo,cup,1
 Foo,pack,3
 ```
-​
+<br />
+
 #### Remove duplicates by header and keep last
 This will remove any duplicated entries that match by column name and keep the last found
 ​
-To use add the option `keep="last"`
-​
-`$ dedupe-csv file="data.csv" column="brand" keep="last"`
-​
+To use add the option `keep="last"`<br />
+```console
+$ dedupe-csv file="data.csv" column="brand" keep="last"
+```
 ##### data-last.csv
 ```
 brand,style,rating
@@ -131,9 +125,7 @@ Yum,pack,2
 Foo,cup,1
 Foo,pack,2
 ```
-​
 Will output the following file:
-​
 ##### data-last_deduped.csv
 ```
 brand,style,rating
