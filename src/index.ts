@@ -2,23 +2,26 @@
 import LineCounter from './line-counter'
 import { resolve } from 'path'
 import ProcessFile from './process-file'
-import chalk from 'chalk'
 import Options from './options'
-const { green } = chalk
+import chalk from 'chalk'
+const { cyan } = chalk
+import validation from './validations'
 
 export const Deduper = async () => {
-  console.log('Working...')
+  console.log(cyan('Working...'))
   const { file, column, keep } = Options()
+  let total: number
 
-  const total = await LineCounter(file)
-
-  if (file === '') {
-    const filename = green(`file='name_of_file.csv'`)
-    console.log(`No CSV included, please specify a csv file by using ${filename}`)
-    process.exit()
+  // Count number of lines if file accessible
+  try {
+    total = await LineCounter(file)
+  } catch (error) {
+    if (file === '') validation('no-file')
+    else validation('incorrent-file', file)
   }
 
-  const filePath = resolve(process.cwd(), file) // Resolve the absolute file path
+  // Resolve the absolute file path
+  const filePath = resolve(process.cwd(), file)
 
   await ProcessFile(total, filePath, file, column, keep)
 }

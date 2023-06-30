@@ -3,6 +3,7 @@ import { createReadStream } from 'fs'
 import Writer from './writer'
 import Progress from './progress'
 import chalk from 'chalk'
+import validations from './validations'
 const { cyan, yellow, green, red } = chalk
 let progressCount: number = 0
 
@@ -24,21 +25,10 @@ export default async (
   const bar = Progress(total)
 
   if (!['first', 'last'].includes(keep) && typeof keep !== 'undefined') {
-    console.log(
-      red.bold(`${keep}`),
-      'Is not a valid option, please use only',
-      green(`'first' 'last'`),
-      'as options'
-    )
-    process.exit()
+    validations('keep', keep)
   }
 
   createReadStream(filePath)
-    .on('error', () =>
-      console.log(
-        `File not found, please make sure the correct file referenced it's on the same path where you are running the command`
-      )
-    )
     .pipe(csv())
     .on('data', (obj) => {
       // Check the columns do exists
@@ -48,17 +38,12 @@ export default async (
 
           for (const header of headers) {
             if (!dataHeaders.includes(header)) {
-              console.log(
-                'The ' + red.bold(`${header}`),
-                'column not be found on the',
-                green(`${file}`),
-                'file'
-              )
-              process.exit()
+              validations('headers', header, file)
             }
           }
         }
         firstRound = false
+        console.clear()
         bar.start(total, 0)
       }
 

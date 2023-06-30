@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-const { red } = chalk
+import validations from './validations'
 
 export default () => {
   const options = {
@@ -14,8 +14,7 @@ export default () => {
       if (Object.keys(options).includes(label)) {
         options[label] = value
       } else {
-        console.log(red(`${label} is not a valid option`))
-        process.exit()
+        validations('label', label)
       }
     }
   }
