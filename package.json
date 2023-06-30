@@ -34,7 +34,8 @@
     "prepublishOnly": "yarn test && yarn lint",
     "preversion": "yarn lint",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "preinstall": "echo 'npm i -g'"
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
